@@ -53,7 +53,7 @@ def get_data_rating(data,Range):
     first_date = pd.to_datetime(round(min(dates) + (Range[0]/24)*(max(dates)-min(dates))))
     last_date = pd.to_datetime(round(min(dates) + (Range[1]/24)*(max(dates)-min(dates))))
     data = data[(data['Date']>=first_date)&(data['Date']<=last_date)]
-    print(data)
+    
     return data
 def get_data_accuracy(data,col):
     
@@ -86,22 +86,7 @@ def opening(data):
             font_family="Courier New",
             title_font_family="Times New Roman",
         )
-    """
-    fig = go.Figure(go.Bar(
-            x=data['count'],
-            y=data['opening'],
-            
-
-            marker=dict(
-                color='rgba(50, 171, 96, 0.6)',
-                line=dict(
-                    color='rgba(50, 171, 96, 1.0)',
-                    width=1),
-
-            ),
-            orientation='h',
-        ))
-    """
+    
     return fig  
 ### dash application
 
@@ -278,38 +263,7 @@ def get_graphs(speed,color,opening):
     
     fig3=px.bar(get_data_(Data,['inaccuracy','mistake','blunder']),template='plotly_dark',y=['inaccuracy','mistake','blunder'],x='month')
     return fig3
-"""
-@app.callback(
-            Output(component_id='graph4',component_property='figure'),
-            [Input(component_id='speed',component_property='value'),
-            Input(component_id='color',component_property='value'),
-            Input(component_id='opening',component_property='value')])
-def get_graphs(speed,color,opening):
-    
-    
-    Data=filter_inputs(df,speed,color,opening)
-    
-    
-    fig4=px.bar(get_data(Data,'mistake'),template='none',y='mistake',x='month')
-    return fig4
 
-@app.callback(
-            Output(component_id='graph5',component_property='figure'),
-            [Input(component_id='speed',component_property='value'),
-            Input(component_id='color',component_property='value'),
-            Input(component_id='opening',component_property='value')])
-def get_graphs(speed,color,opening):
-    
-    
-    Data=filter_inputs(df,speed,color,opening)
-    
-    
-    
-    fig5=px.bar(get_data(Data,'blunder'),template='none',y='blunder',x='month')
-    return fig5
-    
-
-"""
 
 if __name__=='__main__':
     app.run_server(debug=True, port=3000)
