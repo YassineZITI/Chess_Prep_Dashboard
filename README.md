@@ -6,7 +6,8 @@ This repository is about a simple dashboard built using Plotly [Dash](https://da
 
 # How to use it?
 - First download or clone this repository.
-- Execute the data.py file (this script will demand your opponent id wich is the name he uses in lichess(**lowercase**) and also if you see the inside of this script he uses an API key. keep reading i will show you how to get your api key but if you wanna use my api key feel free to use it.)
+- pip install -r requirements.txt
+- Execute the data.py file (this script will demand your opponent id wich is the name he uses on lichess(**lowercase**) and also if you see the inside of this script he uses an API key. keep reading i will show you how to get your api key but if you wanna use my api key feel free to use it.)
 - after you get the data execute app.py in visual studio code or command line or .. copy the link you get in the browser and start inspecting your opponent openings.
 # How to get my api key
 Sign in your [Lichess](https://lichess.org/) account,then click this [link](https://lichess.org/account/oauth/token/create?).
