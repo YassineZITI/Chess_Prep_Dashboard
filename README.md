@@ -8,5 +8,5 @@ This repository is about a simple dashboard built using Plotly [Dash]([)https://
 
 
 # Image Demo:
-[title](C:\Users\walid\Desktop\Yassine\python\actual_projects\dash\demo.png)
+![demo](https://user-images.githubusercontent.com/76163895/180661414-955366f8-cd53-4f6c-ae06-99fd3e90a8c7.png)
 
