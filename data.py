@@ -28,10 +28,10 @@ def filter_incomplete_games(games):
     return games1
 
     
-def main(max_games,API_TOKEN='lip_3gD7WOiSA33fLaJoSojZ'):
+def main(player_id,max_games,API_TOKEN='lip_3gD7WOiSA33fLaJoSojZ'):
     session = berserk.TokenSession(API_TOKEN)
     client = berserk.Client(session=session)
-    games = list(client.games.export_by_player('yaS1Sine',max=max_games, 
+    games = list(client.games.export_by_player(player_id,max=max_games, 
      moves=False, tags=False, evals=True, opening=True))
     # keep only blitz and rapid games
     games=[i for i in games if (i['perf']=='blitz' or i['perf']=='rapid' or i['perf']=='bullet') and i['variant']=='standard']
@@ -58,12 +58,12 @@ def main(max_games,API_TOKEN='lip_3gD7WOiSA33fLaJoSojZ'):
         speed.append(i['speed'] )
         game_ending.append(i['status'])
         opening.append(i['opening']['name'])
-        if i['players']['black']['user']['id']=='yas1sine':
+        if i['players']['black']['user']['id']==player_id:
             color.append('black')
             rating.append(i['players']['black']['rating'])
             opponent_rating.append(i['players']['white']['rating'])
 
-        if i['players']['white']['user']['id']=='yas1sine':
+        if i['players']['white']['user']['id']==player_id:
             color.append('white')
             rating.append(i['players']['white']['rating'])
             opponent_rating.append(i['players']['black']['rating'])
@@ -86,7 +86,7 @@ def main(max_games,API_TOKEN='lip_3gD7WOiSA33fLaJoSojZ'):
                         cpl+=str(j['eval'])+' '
             analysis.append(cpl)
 
-            if i['players']['black']['user']['id']=='yas1sine':
+            if i['players']['black']['user']['id']==player_id:
                 accuracy.append(i['players']['black']['analysis']['acpl'])
                 inaccuracy.append(i['players']['black']['analysis']['inaccuracy'])
                 mistake.append(i['players']['black']['analysis']['mistake'])
@@ -124,5 +124,5 @@ def main(max_games,API_TOKEN='lip_3gD7WOiSA33fLaJoSojZ'):
 
 
 if __name__ == "__main__":
-
-    main(2000,API_TOKEN='lip_3gD7WOiSA33fLaJoSojZ')
+    player_id = input('enter your opponent id here:')
+    main(player_id,2000,API_TOKEN='lip_3gD7WOiSA33fLaJoSojZ')
